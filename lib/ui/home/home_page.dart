@@ -19,10 +19,27 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontSize: 30, fontFamily: 'RobotoMono'),
           ),
         )),
-        body: DashBoard(
-          name: 'Current Tasks',
-          description: '',
-        ));
+        body: Column(children: [
+          GestureDetector(
+              onTap: () {
+                // go to tasks board
+              },
+              child: Flexible(
+                  child: DashBoard(
+                name: 'Current Tasks',
+                description: '',
+              ))),
+          GestureDetector(
+            onTap: () {
+              // go to stats board
+            },
+            child: Flexible(
+                child: DashBoard(
+              name: 'Statistics',
+              description: 'Check out your stats!',
+            )),
+          )
+        ]));
   }
 }
 
@@ -38,37 +55,35 @@ class DashBoard extends StatelessWidget {
     if (description == "") {
       description = "Make More Plans Today!";
     }
-    return Center(
-        child: Container(
-            padding: const EdgeInsets.all(10),
-            height: 110,
-            child: Card(
-                child: Row(
+    return Container(
+        padding: const EdgeInsets.all(10),
+        height: 110,
+        child: Card(
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(
+                child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                //Image.asset('Runner.png'),
-                Expanded(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(name,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20)),
-                  ],
-                )),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Expanded(
-                          child: Center(
-                              child: Text(
-                        description,
-                      )))
-                    ],
-                  ),
-                )
+                Text(name,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20)),
               ],
-            ))));
+            )),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Expanded(
+                      child: Center(
+                          child: Text(
+                    description,
+                  )))
+                ],
+              ),
+            )
+          ],
+        )));
   }
 }

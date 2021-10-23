@@ -9,8 +9,8 @@ class GitFitApp extends StatelessWidget {
     return MaterialApp(
       title: 'Git Fit',
       theme: ThemeData(
+        backgroundColor: Color(0xFFFFFF),
         primarySwatch: Colors.blueGrey,
-        fontFamily: 'Raleway',
       ),
       home: const HomePage(),
     );

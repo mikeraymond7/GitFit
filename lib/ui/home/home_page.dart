@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,82 +7,83 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+/*
+Incomplete Home Page, UI Needs Work
+Hosts Multiple Dashboard Widgets that move to other pages
+*/
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    // returns constant Dashboard navigator buttons
     return Scaffold(
         appBar: AppBar(
             title: const Center(
           child: Text(
             "GitFit",
-            style: TextStyle(fontSize: 30, fontFamily: 'RobotoMono'),
+            style: TextStyle(fontSize: 30),
           ),
         )),
-        body: Column(children: [
-          GestureDetector(
-              onTap: () {
-                // go to tasks board
-              },
-              child: Flexible(
-                  child: DashBoard(
-                name: 'Current Tasks',
-                description: '',
-              ))),
-          GestureDetector(
-            onTap: () {
-              // go to stats board
-            },
-            child: Flexible(
-                child: DashBoard(
-              name: 'Statistics',
-              description: 'Check out your stats!',
-            )),
-          )
+        // List of Dashboard objects below Home UI
+        body: ListView(children: [
+          Flexible(
+              child: DashBoard(
+            path: '/my_goals',
+            name: 'Current Goals',
+            description: 'Check out your\nPersonal Goals!',
+          )),
+          Flexible(
+              child: DashBoard(
+            path: '/ioStats',
+            name: 'Statistics',
+            description: 'Check out your stats!',
+          )),
         ]));
   }
 }
 
 // ignore: must_be_immutable
 class DashBoard extends StatelessWidget {
-  DashBoard({Key? key, required this.name, required this.description})
+  DashBoard(
+      {Key? key,
+      required this.name,
+      required this.description,
+      required this.path})
       : super(key: key);
 
   final String name;
+  final String path;
   String description;
   @override
   Widget build(BuildContext context) {
-    if (description == "") {
-      description = "Make More Plans Today!";
-    }
-    return Container(
-        padding: const EdgeInsets.all(10),
-        height: 110,
-        child: Card(
+    return ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamed(context, path);
+        },
+        child: Container(
+            color: Colors.blueGrey[200],
+            padding: const EdgeInsets.all(10),
+            height: 80,
+            //child: Card(
             child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Expanded(
-                child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(name,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20)),
+                Expanded(
+                    child: Center(
+                        child: Text(name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            )))),
+                Expanded(
+                  child: Center(
+                    child: Text(description,
+                        style: const TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: 18,
+                        )),
+                  ),
+                )
               ],
-            )),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Expanded(
-                      child: Center(
-                          child: Text(
-                    description,
-                  )))
-                ],
-              ),
-            )
-          ],
-        )));
+            )));
   }
 }

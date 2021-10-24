@@ -10,7 +10,6 @@ class UsConfig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> _nums = ['0', '0', '0'];
     return Scaffold(
       appBar: AppBar(
         title: const Text('US Version:'),
@@ -37,12 +36,6 @@ class SetUsConfigs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*List<String> _options;
-    if (option == '1') {
-      _options = ['lbs', 'ft', 'in'];
-    } else if (option == '2') {
-      _options = ['kg', 'cm'];
-    }*/
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -68,17 +61,6 @@ class SetUsConfigs extends StatelessWidget {
                         return null;
                       },
                     ),
-                    /* Row(
-                      children: [
-                        TextFormField(
-                            decoration: const InputDecoration(
-                              hintText: 'Enter Your Height (ft)',
-                            ),
-                            validator: (String? value) {
-                              //if (value == null)
-                            })
-                      ],
-                    ),*/
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
@@ -93,9 +75,9 @@ class SetUsConfigs extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }

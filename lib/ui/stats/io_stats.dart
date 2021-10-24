@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:git_fit/ui/stats/US.dart';
+import 'package:git_fit/ui/stats/US/US.dart';
+import 'package:git_fit/app/controller.dart';
 
 class IoStats extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
@@ -9,23 +10,37 @@ class IoStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Enter Stats Below!"),
-        ),
-        body: Center(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const <Widget>[
-              Expanded(
-                child: Center(
-                  child: Text("Choose a metric:"),
-                ),
+      appBar: AppBar(
+        title: const Text("Let's Get Started!"),
+      ),
+      body: Center(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const <Widget>[
+            Expanded(
+              child: Center(
+                child: Text("Choose a metric:"),
               ),
-              Expanded(
-                  child: StatsConfigs(
-                      //option: '1',
-                      )),
-            ])));
+            ),
+            Expanded(
+                child: StatsConfigs(
+                    //option: '1',
+                    )),
+          ])),
+      bottomNavigationBar: BottomNavigationBar(
+          // ignore: prefer_const_literals_to_create_immutables
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.insert_chart_outlined),
+              label: 'Stats',
+              backgroundColor: Colors.red,
+            )
+          ]),
+    );
   }
 }
 
@@ -51,77 +66,6 @@ class StatsConfigs extends StatelessWidget {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const UsConfig()));
       },
-    );
-  }
-}
-
-class SetConfigs extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  SetConfigs({Key? key});
-  //final String option;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    /*List<String> _options;
-    if (option == '1') {
-      _options = ['lbs', 'ft', 'in'];
-    } else if (option == '2') {
-      _options = ['kg', 'cm'];
-    }*/
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          children: [
-            const Expanded(child: Center(child: Text("Calculate BMI:"))),
-            Expanded(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: 'Enter Your Weight (lbs)',
-                      ),
-                      validator: (String? value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.compareTo('0') < 1) {
-                          return 'Please Enter Your Weight:';
-                        }
-                        return null;
-                      },
-                    ),
-                    /* Row(
-                      children: [
-                        TextFormField(
-                            decoration: const InputDecoration(
-                              hintText: 'Enter Your Height (ft)',
-                            ),
-                            validator: (String? value) {
-                              //if (value == null)
-                            })
-                      ],
-                    ),*/
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            print("Hi");
-                          }
-                        },
-                        child: const Text('Submit'),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        )
-      ],
     );
   }
 }

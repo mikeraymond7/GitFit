@@ -16,28 +16,43 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // returns constant Dashboard navigator buttons
     return Scaffold(
-        appBar: AppBar(
-            title: const Center(
-          child: Text(
-            "GitFit",
-            style: TextStyle(fontSize: 30),
-          ),
+      backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+          title: const Center(
+        child: Text(
+          "GitFit",
+          style: TextStyle(fontSize: 30),
+        ),
+      )),
+      // List of Dashboard objects below Home UI
+      body: ListView(children: [
+        Flexible(
+            child: DashBoard(
+          path: '/my_goals',
+          name: 'Current Goals',
+          description: 'Check out your\nPersonal Goals!',
         )),
-        // List of Dashboard objects below Home UI
-        body: ListView(children: [
-          Flexible(
-              child: DashBoard(
-            path: '/my_goals',
-            name: 'Current Goals',
-            description: 'Check out your\nPersonal Goals!',
-          )),
-          Flexible(
-              child: DashBoard(
-            path: '/ioStats',
-            name: 'Statistics',
-            description: 'Check out your stats!',
-          )),
-        ]));
+        Flexible(
+            child: DashBoard(
+          path: '/ioStats',
+          name: 'Statistics',
+          description: 'Check out your stats!',
+        )),
+      ]),
+      bottomNavigationBar: BottomNavigationBar(
+          // ignore: prefer_const_literals_to_create_immutables
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.insert_chart_outlined),
+              label: 'Stats',
+              backgroundColor: Colors.red,
+            )
+          ]),
+    );
   }
 }
 

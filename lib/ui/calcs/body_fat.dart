@@ -167,9 +167,9 @@ class IoBfp extends StatelessWidget {
                       title: const Text('Body Fat %:'),
                       content: Text("Body Fat: " +
                           bfp.round().toString() +
-                          "%\n\tFat: " +
+                          "%\n\nFat: " +
                           fat.toString() +
-                          " lbs\n\tLean: " +
+                          " lbs\nLean: " +
                           lean.toString() +
                           " lbs"),
                       actions: <Widget>[

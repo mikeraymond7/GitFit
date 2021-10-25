@@ -25,7 +25,7 @@ class _CalcsPageState extends State<CalcsPage> {
             Expanded(
               child: Center(
                 child: Text(
-                  "Choose a calculation:",
+                  "Choose a \nCalculation:",
                   style: TextStyle(fontSize: 20),
                 ),
               ),

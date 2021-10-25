@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:git_fit/database/database.dart';
 import 'package:git_fit/database/stats.dart';
+import 'package:git_fit/ui/calcs/functions.dart';
 
 // ignore: use_key_in_widget_constructors
 class BmiPage extends StatefulWidget {
@@ -20,11 +21,7 @@ class _BmiPageState extends State<BmiPage> {
       appBar: AppBar(
         title: const Text('BMI:'),
       ),
-      body: Center(
-        child: Expanded(
-          child: IoBMI(),
-        ),
-      ),
+      body: IoBMI(),
     );
   }
 }
@@ -34,17 +31,6 @@ class IoBMI extends StatelessWidget {
   IoBMI({Key? key});
   //final String option;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  // ignore: non_constant_identifier_names
-  double CalcBMI(int weight, int height, int metric) {
-    if (weight == 0 || height == 0) {
-      return 0;
-    }
-    if (metric == 1) {
-      weight = weight * 703;
-    }
-    return (weight / (height * height));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +99,7 @@ class IoBMI extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () /*async*/ {
               if (_formKey.currentState!.validate()) {
-                bmi = CalcBMI(weight, height, 1).round();
+                bmi = Functions.CalcBMI(weight, height, 1).round();
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(

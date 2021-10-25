@@ -1,8 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:git_fit/ui/goals/goals.dart';
 import 'package:git_fit/ui/home/home_page.dart';
 import 'package:git_fit/ui/calcs/calcs.dart';
+import 'package:git_fit/ui/stats/stats.dart';
+import 'package:git_fit/config/colors.dart';
 
 // ignore: use_key_in_widget_constructors
 class NavPage extends StatefulWidget {
@@ -17,6 +21,7 @@ class _NavPageState extends State<NavPage> {
     HomePage(),
     GoalsPage(),
     CalcsPage(),
+    StatsPage(),
   ];
 
   void _changeIdx(int idx) {
@@ -29,23 +34,55 @@ class _NavPageState extends State<NavPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _indexList[_idx],
-      bottomNavigationBar:
-          BottomNavigationBar(onTap: _changeIdx, currentIndex: _idx,
-              // ignore: prefer_const_literals_to_create_immutables
-              items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.black,
+        fixedColor: Palette.mainOrange,
+        onTap: _changeIdx, currentIndex: _idx,
+        // ignore: prefer_const_literals_to_create_immutables
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              color: Palette.mainOrange,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.lightbulb_outline),
-              label: 'Goals',
+            title: Text(
+              'Home',
+              style: TextStyle(color: Palette.mainOrange),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.insert_chart_outlined),
-              label: 'Calculations',
-            )
-          ]),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.lightbulb_outline,
+              color: Palette.mainOrange,
+            ),
+            title: Text(
+              'Goals',
+              style: TextStyle(color: Palette.mainOrange),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.calculate_outlined,
+              color: Palette.mainOrange,
+            ),
+            title: Text(
+              'Calculations',
+              style: TextStyle(color: Palette.mainOrange),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.insert_chart_outlined,
+              color: Palette.mainOrange,
+            ),
+            title: Text(
+              'Statistics',
+              style: TextStyle(color: Palette.mainOrange),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

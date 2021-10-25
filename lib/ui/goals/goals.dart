@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyGoals extends StatelessWidget {
+// ignore: use_key_in_widget_constructors
+class GoalsPage extends StatefulWidget {
+  @override
+  State<GoalsPage> createState() => _GoalsPageState();
+}
+
+class _GoalsPageState extends State<GoalsPage> {
   // ignore: use_key_in_widget_constructors
-  const MyGoals({Key? key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
-import '../ui/home/home_page.dart';
-import '../ui/stats/io_stats.dart';
-import '../ui/goals/my_goals.dart';
+import 'package:git_fit/ui/home/home_page.dart';
+import 'package:git_fit/ui/stats/calcs.dart';
+import 'package:git_fit/ui/goals/goals.dart';
+import 'package:git_fit/app/controller.dart';
+import 'package:flutter/widgets.dart';
+//import 'package:git_fit/database/database.dart';
 
-class GitFitApp extends StatelessWidget {
-  const GitFitApp({Key? key}) : super(key: key);
+// ignore: use_key_in_widget_constructors
+class GitPage extends StatefulWidget {
+  @override
+  State<GitPage> createState() => _GitPageState();
+}
 
+class _GitPageState extends State<GitPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Git Fit',
       initialRoute: '/',
       routes: {
-        //'/': (context) => const HomePage(),
-        '/ioStats': (context) => const IoStats(),
-        '/my_goals': (context) => const MyGoals(),
+        '/home': (context) => HomePage(),
+        '/calcs': (context) => CalcsPage(),
+        '/goals': (context) => GoalsPage(),
       },
       theme: ThemeData(
         //backgroundColor: const Color(0xffb0bec5),
         primarySwatch: Colors.blueGrey,
       ),
-      home: const HomePage(),
+      home: NavPage(),
     );
   }
 }

@@ -24,14 +24,8 @@ class _BmiPageState extends State<BfpPage> {
         title: const Text('Body Fat %:'),
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: IoBfp(),
-            )
-          ],
-        ),
+        heightFactor: 20.0,
+        child: IoBfp(),
       ),
     );
   }
@@ -56,147 +50,151 @@ class IoBfp extends StatelessWidget {
     int fat = 0;
     int sex = 1;
 
-    return ListView(children: [
-      Row(
-        children: [
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                //Expanded(
-                //child:
-                const Center(
-                  child: Text("Enter Your \nInformation:",
-                      style: TextStyle(fontSize: 20)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: DropdownButtonFormField(
-                    items: const [
-                      DropdownMenuItem(
-                        child: Text('Male'),
-                        value: 1,
-                      ),
-                      DropdownMenuItem(
-                        child: Text('Female'),
-                        value: 2,
-                      ),
-                    ],
-                    hint: const Text('Sex'),
-                    onChanged: (value) {
-                      if (value == 1) {
-                        sex = 1;
-                      } else if (value == 2) {
-                        sex = 2;
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Form(
-              key: _formKey,
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        Row(
+          children: [
+            Expanded(
               child: Column(
                 children: <Widget>[
+                  //Expanded(
+                  //child:
+                  const Center(
+                    child: Text("Enter Your \nInformation:",
+                        style: TextStyle(fontSize: 20)),
+                  ),
                   Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Weight (lbs)',
+                    padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                    child: DropdownButtonFormField(
+                      items: const [
+                        DropdownMenuItem(
+                          child: Text('Male'),
+                          value: 1,
                         ),
-                        validator: (String? value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.compareTo('0') < 1) {
-                            return 'Please Enter a Valid Weight:';
-                          } else {
-                            weight = int.parse(value);
-                          }
-                          return null;
-                        },
-                      )),
-                  Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Height (in)',
+                        DropdownMenuItem(
+                          child: Text('Female'),
+                          value: 2,
                         ),
-                        validator: (String? value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.compareTo('0') < 1) {
-                            return 'Please Enter a Valid Height:';
-                          } else {
-                            height = int.parse(value);
-                          }
-                          return null;
-                        },
-                      )),
-                  Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Age',
-                        ),
-                        validator: (String? value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.compareTo('0') < 1) {
-                            return 'Please Enter a Valid Age:';
-                          } else {
-                            age = int.parse(value);
-                          }
-                          return null;
-                        },
-                      )),
+                      ],
+                      hint: const Text('Sex'),
+                      onChanged: (value) {
+                        if (value == 1) {
+                          sex = 1;
+                        } else if (value == 2) {
+                          sex = 2;
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
-          ),
-        ],
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 150.0),
-        child: ElevatedButton(
-          onPressed: () /*async*/ {
-            if (_formKey.currentState!.validate()) {
-              bfp = Functions.CalcBFP(weight, height, age, sex);
-              fat = ((bfp * weight) / 100).round();
-              lean = weight - fat;
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Body Fat %:'),
-                    content: Text("Body Fat: " +
-                        bfp.round().toString() +
-                        "%\n\tFat: " +
-                        fat.toString() +
-                        " lbs\n\tLean: " +
-                        lean.toString() +
-                        " lbs"),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(context, 'Ok, I\'ve seen enough'),
-                        child: const Text('Ok, I\'ve seen enough'),
-                      )
-                    ]),
-              );
-
-              //if (isValid(weight, height)){
-              // await StatsDB.instance.create(Stats(
-              //   id: 1,
-              //   height: height,
-              //   weight: weight,
-              //   bmi: (CalcBMI(weight, height, id).floor()),
-              // ));
-              //}
-            }
-          },
-          child: const Text('Submit'),
+            Expanded(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: 'Weight (lbs)',
+                          ),
+                          validator: (String? value) {
+                            if (value == null ||
+                                value.isEmpty ||
+                                value.compareTo('0') < 1) {
+                              return 'Please Enter a Valid Weight:';
+                            } else {
+                              weight = int.parse(value);
+                            }
+                            return null;
+                          },
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: 'Height (in)',
+                          ),
+                          validator: (String? value) {
+                            if (value == null ||
+                                value.isEmpty ||
+                                value.compareTo('0') < 1) {
+                              return 'Please Enter a Valid Height:';
+                            } else {
+                              height = int.parse(value);
+                            }
+                            return null;
+                          },
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: 'Age',
+                          ),
+                          validator: (String? value) {
+                            if (value == null ||
+                                value.isEmpty ||
+                                value.compareTo('0') < 1) {
+                              return 'Please Enter a Valid Age:';
+                            } else {
+                              age = int.parse(value);
+                            }
+                            return null;
+                          },
+                        )),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-      )
-    ]);
+        Padding(
+          padding:
+              const EdgeInsets.symmetric(vertical: 16.0, horizontal: 150.0),
+          child: ElevatedButton(
+            onPressed: () /*async*/ {
+              if (_formKey.currentState!.validate()) {
+                bfp = Functions.CalcBFP(weight, height, age, sex);
+                fat = ((bfp * weight) / 100).round();
+                lean = weight - fat;
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                      title: const Text('Body Fat %:'),
+                      content: Text("Body Fat: " +
+                          bfp.round().toString() +
+                          "%\n\tFat: " +
+                          fat.toString() +
+                          " lbs\n\tLean: " +
+                          lean.toString() +
+                          " lbs"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(context, 'Ok, I\'ve seen enough'),
+                          child: const Text('Ok, I\'ve seen enough'),
+                        )
+                      ]),
+                );
+
+                //if (isValid(weight, height)){
+                // await StatsDB.instance.create(Stats(
+                //   id: 1,
+                //   height: height,
+                //   weight: weight,
+                //   bmi: (CalcBMI(weight, height, id).floor()),
+                // ));
+                //}
+              }
+            },
+            child: const Text('Submit'),
+          ),
+        ),
+      ],
+    );
   }
 }

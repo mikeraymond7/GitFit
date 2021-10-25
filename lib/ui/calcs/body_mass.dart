@@ -21,13 +21,8 @@ class _BmiPageState extends State<BmiPage> {
         title: const Text('BMI:'),
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: IoBMI(),
-            )
-          ],
+        child: Expanded(
+          child: IoBMI(),
         ),
       ),
     );

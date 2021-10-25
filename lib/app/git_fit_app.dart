@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:git_fit/ui/home/home_page.dart';
-import 'package:git_fit/ui/stats/calcs.dart';
+import 'package:git_fit/ui/calcs/calcs.dart';
 import 'package:git_fit/ui/goals/goals.dart';
 import 'package:git_fit/app/controller.dart';
 import 'package:flutter/widgets.dart';
+
 //import 'package:git_fit/database/database.dart';
 
 // ignore: use_key_in_widget_constructors

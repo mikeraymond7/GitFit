@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:git_fit/ui/stats/BMI/BMI.dart';
+import 'package:git_fit/ui/calcs/body_mass.dart';
+import 'package:git_fit/ui/calcs/body_fat.dart';
 
 // ignore: use_key_in_widget_constructors
 class CalcsPage extends StatefulWidget {
@@ -23,15 +24,13 @@ class _CalcsPageState extends State<CalcsPage> {
               children: const <Widget>[
             Expanded(
               child: Center(
-                  child: Text(
-                "Choose a calculation:",
-                style: TextStyle(fontSize: 20),
-              )),
+                child: Text(
+                  "Choose a calculation:",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
             ),
-            Expanded(
-                child: StatsConfigs(
-                    //option: '1',
-                    )),
+            Expanded(child: StatsConfigs()),
           ])),
     );
   }
@@ -56,8 +55,13 @@ class StatsConfigs extends StatelessWidget {
       ],
       hint: const Text('Click Here To Choose'),
       onChanged: (value) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => BmiPage()));
+        if (value == 1) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => BmiPage()));
+        } else if (value == 2) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => BfpPage()));
+        }
       },
     );
   }

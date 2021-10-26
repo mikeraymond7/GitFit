@@ -41,7 +41,7 @@ class _NavPageState extends State<NavPage> {
         onTap: _changeIdx, currentIndex: _idx,
         // ignore: prefer_const_literals_to_create_immutables
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
               color: Palette.mainOrange,
@@ -51,7 +51,7 @@ class _NavPageState extends State<NavPage> {
               style: TextStyle(color: Palette.mainOrange),
             ),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.lightbulb_outline,
               color: Palette.mainOrange,
@@ -61,7 +61,7 @@ class _NavPageState extends State<NavPage> {
               style: TextStyle(color: Palette.mainOrange),
             ),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.calculate_outlined,
               color: Palette.mainOrange,
@@ -71,7 +71,7 @@ class _NavPageState extends State<NavPage> {
               style: TextStyle(color: Palette.mainOrange),
             ),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.insert_chart_outlined,
               color: Palette.mainOrange,

@@ -98,20 +98,24 @@ class IoBMI extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: ElevatedButton(
             onPressed: () /*async*/ {
+              // check if state is valid
               if (_formKey.currentState!.validate()) {
                 bmi = Functions.CalcBMI(weight, height, 1).round();
+                // display score on valid submission
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                      title: const Text('BMI Score:'),
-                      content: Text("Your BMI is: " + bmi.toString()),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(context, 'Ok, I\'ve seen enough'),
-                          child: const Text('Ok, I\'ve seen enough'),
-                        )
-                      ]),
+                    title: const Text('BMI Score:'),
+                    content: Text("Your BMI is: " + bmi.toString()),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () =>
+                            // exit from display
+                            Navigator.pop(context, 'Ok, I\'ve seen enough'),
+                        child: const Text('Ok, I\'ve seen enough'),
+                      )
+                    ],
+                  ),
                 );
 
                 //if (isValid(weight, height)){
@@ -124,6 +128,7 @@ class IoBMI extends StatelessWidget {
                 //}
               }
             },
+            // button name
             child: const Text('Submit'),
           ),
         )

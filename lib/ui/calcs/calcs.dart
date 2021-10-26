@@ -19,9 +19,9 @@ class _CalcsPageState extends State<CalcsPage> {
         title: const Text("Let's Get Started!"),
       ),
       body: Center(
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const <Widget>[
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const <Widget>[
             Expanded(
               child: Center(
                 child: Text(
@@ -31,7 +31,9 @@ class _CalcsPageState extends State<CalcsPage> {
               ),
             ),
             Expanded(child: StatsConfigs()),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

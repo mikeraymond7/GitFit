@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+// customized botton row with two text widgets
 // ignore: must_be_immutable
 class DashBoard extends StatelessWidget {
   DashBoard(
@@ -93,7 +94,7 @@ class DashBoard extends StatelessWidget {
             child: Center(
               child: Text(
                 name,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                   color: Palette.mainOrange,
@@ -105,7 +106,7 @@ class DashBoard extends StatelessWidget {
             child: Center(
               child: Text(
                 description,
-                style: TextStyle(
+                style: const TextStyle(
                   fontStyle: FontStyle.italic,
                   fontSize: 18,
                   color: Palette.mainOrange,

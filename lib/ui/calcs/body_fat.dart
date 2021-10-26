@@ -50,19 +50,23 @@ class IoBfp extends StatelessWidget {
     int fat = 0;
     int sex = 1;
 
+    // List view to avoid pixel overflow when typing
     return ListView(
       shrinkWrap: true,
       children: [
         Row(
           children: [
+            // Expanded to ensure formats don't overlap or run off page
             Expanded(
               child: Column(
                 children: <Widget>[
                   //Expanded(
                   //child:
                   const Center(
-                    child: Text("Enter Your \nInformation:",
-                        style: TextStyle(fontSize: 20)),
+                    child: Text(
+                      "Enter Your \nInformation:",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 35.0),
@@ -92,6 +96,7 @@ class IoBfp extends StatelessWidget {
             ),
             Expanded(
               child: Form(
+                // one key can be used for multiple TextFormFields
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
@@ -101,6 +106,7 @@ class IoBfp extends StatelessWidget {
                           decoration: const InputDecoration(
                             hintText: 'Weight (lbs)',
                           ),
+                          // use validator to submit data
                           validator: (String? value) {
                             if (value == null ||
                                 value.isEmpty ||
@@ -130,22 +136,23 @@ class IoBfp extends StatelessWidget {
                           },
                         )),
                     Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            hintText: 'Age',
-                          ),
-                          validator: (String? value) {
-                            if (value == null ||
-                                value.isEmpty ||
-                                value.compareTo('0') < 1) {
-                              return 'Please Enter a Valid Age:';
-                            } else {
-                              age = int.parse(value);
-                            }
-                            return null;
-                          },
-                        )),
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Age',
+                        ),
+                        validator: (String? value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.compareTo('0') < 1) {
+                            return 'Please Enter a Valid Age:';
+                          } else {
+                            age = int.parse(value);
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -155,30 +162,33 @@ class IoBfp extends StatelessWidget {
         Padding(
           padding:
               const EdgeInsets.symmetric(vertical: 16.0, horizontal: 150.0),
+          // take input
           child: ElevatedButton(
             onPressed: () /*async*/ {
               if (_formKey.currentState!.validate()) {
                 bfp = Functions.CalcBFP(weight, height, age, sex);
                 fat = ((bfp * weight) / 100).round();
                 lean = weight - fat;
+                // display outcome on submission
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                      title: const Text('Body Fat %:'),
-                      content: Text("Body Fat: " +
-                          bfp.round().toString() +
-                          "%\n\nFat: " +
-                          fat.toString() +
-                          " lbs\nLean: " +
-                          lean.toString() +
-                          " lbs"),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(context, 'Ok, I\'ve seen enough'),
-                          child: const Text('Ok, I\'ve seen enough'),
-                        )
-                      ]),
+                    title: const Text('Body Fat %:'),
+                    content: Text("Body Fat: " +
+                        bfp.round().toString() +
+                        "%\n\nFat: " +
+                        fat.toString() +
+                        " lbs\nLean: " +
+                        lean.toString() +
+                        " lbs"),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () =>
+                            Navigator.pop(context, 'Ok, I\'ve seen enough'),
+                        child: const Text('Ok, I\'ve seen enough'),
+                      )
+                    ],
+                  ),
                 );
 
                 //if (isValid(weight, height)){

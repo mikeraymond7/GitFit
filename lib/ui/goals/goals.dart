@@ -13,13 +13,14 @@ class _GoalsPageState extends State<GoalsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Check out your goals!!",
-          ),
+      appBar: AppBar(
+        title: const Text(
+          "Check out your goals!!",
         ),
-        body: const Center(
-          child: Text("We just don't have any goals yet :("),
-        ));
+      ),
+      body: const Center(
+        child: Text("We just don't have any goals yet :("),
+      ),
+    );
   }
 }

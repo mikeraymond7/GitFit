@@ -1,0 +1,39 @@
+//     <Widget>[
+    //   Text(
+    //     'Body Mass Index: ' + stats.bmi.toString(),
+    //     style: const TextStyle(
+    //       color: Color(0xffffffff),
+    //     ),
+    //   ),
+    //   Text(
+    //     'Body Fat Percentage: ' + stats.bfp.toString(),
+    //     style: const TextStyle(
+    //       color: Color(0xffffffff),
+    //     ),
+    //   ),
+    //   Text(
+    //     'Height: ' + stats.height.toString(),
+    //     style: const TextStyle(
+    //       color: Color(0xffffffff),
+    //     ),
+    //   ),
+    //   Text(
+    //     'Weight: ' + stats.weight.toString(),
+    //     style: const TextStyle(
+    //       color: Color(0xffffffff),
+    //     ),
+    //   ),
+    //   Text(
+    //     'Estimated Lean Weight: ' + stats.lean.toString(),
+    //     style: const TextStyle(
+    //       color: Color(0xffffffff),
+    //     ),
+    //   ),
+    //   Text(
+    //     'Estimated Fat Weight: ' + stats.fat.toString(),
+    //     style: const TextStyle(
+    //       color: Color(0xffffffff),
+    //       fontSize: 20.0,
+    //     ),
+    //   )
+    // ];

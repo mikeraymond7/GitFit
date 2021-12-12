@@ -45,7 +45,7 @@ class ToServer {
       ),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return response;
     } else {
       throw Exception('Failed to Update User.');
@@ -60,8 +60,10 @@ class ToServer {
       },
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return Stats.fromJson(jsonDecode(response.body));
+    } else if (response.statusCode == 200) {
+      throw Exception('This Stats table does not exist.');
     } else {
       throw Exception('Failed to fetch Stats.');
     }

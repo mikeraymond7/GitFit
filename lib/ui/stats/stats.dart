@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-
-import 'package:git_fit/database/db_objects.dart';
-import 'package:git_fit/database/server_conn.dart';
+import 'package:git_fit/server-db/db_objects.dart';
+import 'package:git_fit/server-db/server_conn.dart';
 
 // ignore: use_key_in_widget_constructors
 class StatsPage extends StatefulWidget {

@@ -4,11 +4,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:git_fit/database/database.dart';
-import 'package:git_fit/database/stats.dart';
 import 'package:git_fit/ui/calcs/functions.dart';
-import 'package:git_fit/database/server_conn.dart';
-import 'package:git_fit/database/db_objects.dart';
+import 'package:git_fit/server-db/server_conn.dart';
+import 'package:git_fit/server-db/db_objects.dart';
 
 // ignore: use_key_in_widget_constructors
 class BfpPage extends StatefulWidget {

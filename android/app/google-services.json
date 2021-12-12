@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "304103055831",
+    "project_id": "gitfit-b657b",
+    "storage_bucket": "gitfit-b657b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304103055831:android:4869ecccdc30071e00eb92",
+        "android_client_info": {
+          "package_name": "com.example.git_fit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304103055831-5utctm6iopmeqpbeouis3fl3tbkoc2bn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeSlTTrMAY828-S3wPEogTrpkB5f85h58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304103055831-5utctm6iopmeqpbeouis3fl3tbkoc2bn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

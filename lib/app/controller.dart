@@ -77,7 +77,7 @@ class _NavPageState extends State<NavPage> {
               color: Palette.mainOrange,
             ),
             title: Text(
-              'Statistics',
+              'My Stats',
               style: TextStyle(color: Palette.mainOrange),
             ),
           ),

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:git_fit/database/database.dart';
 import 'package:git_fit/database/stats.dart';
 import 'package:git_fit/ui/calcs/functions.dart';
+import 'package:git_fit/database/server_conn.dart';
+import 'package:git_fit/database/db_objects.dart';
 
 // ignore: use_key_in_widget_constructors
 class BmiPage extends StatefulWidget {
@@ -101,6 +103,12 @@ class IoBMI extends StatelessWidget {
               // check if state is valid
               if (_formKey.currentState!.validate()) {
                 bmi = Functions.CalcBMI(weight, height, 1).round();
+                Bmi stats = Bmi(
+                    uname: 'mraymond2@pride.hofstra.edu',
+                    bmi: bmi,
+                    weight: weight,
+                    height: height);
+
                 // display score on valid submission
                 showDialog<String>(
                   context: context,
@@ -109,11 +117,15 @@ class IoBMI extends StatelessWidget {
                     content: Text("Your BMI is: " + bmi.toString()),
                     actions: <Widget>[
                       TextButton(
+                        onPressed: () => ToServer().updateStats(stats),
+                        child: const Text('Update your stats'),
+                      ),
+                      TextButton(
                         onPressed: () =>
                             // exit from display
-                            Navigator.pop(context, 'Ok, I\'ve seen enough'),
-                        child: const Text('Ok, I\'ve seen enough'),
-                      )
+                            Navigator.pop(context, 'Exit'),
+                        child: const Text('Exit'),
+                      ),
                     ],
                   ),
                 );

@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:git_fit/database/database.dart';
 import 'package:git_fit/database/stats.dart';
 import 'package:git_fit/ui/calcs/functions.dart';
+import 'package:git_fit/database/server_conn.dart';
+import 'package:git_fit/database/db_objects.dart';
 
 // ignore: use_key_in_widget_constructors
 class BfpPage extends StatefulWidget {
@@ -169,6 +171,21 @@ class IoBfp extends StatelessWidget {
                 bfp = Functions.CalcBFP(weight, height, age, sex);
                 fat = ((bfp * weight) / 100).round();
                 lean = weight - fat;
+                String mySex = 'm';
+                if (sex == 2) {
+                  mySex = 'f';
+                }
+
+                Bfp stats = Bfp(
+                    uname: 'mraymond2@pride.hofstra.edu',
+                    bfp: bfp.toInt(),
+                    sex: mySex,
+                    weight: weight,
+                    height: height,
+                    age: age,
+                    lean: lean,
+                    fat: fat);
+
                 // display outcome on submission
                 showDialog<String>(
                   context: context,
@@ -183,10 +200,15 @@ class IoBfp extends StatelessWidget {
                         " lbs"),
                     actions: <Widget>[
                       TextButton(
+                        onPressed: () => ToServer().updateStats(stats),
+                        child: const Text('Update your stats'),
+                      ),
+                      TextButton(
                         onPressed: () =>
-                            Navigator.pop(context, 'Ok, I\'ve seen enough'),
-                        child: const Text('Ok, I\'ve seen enough'),
-                      )
+                            // exit from display
+                            Navigator.pop(context, 'Exit'),
+                        child: const Text('Exit'),
+                      ),
                     ],
                   ),
                 );

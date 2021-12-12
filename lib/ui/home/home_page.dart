@@ -40,22 +40,18 @@ class _HomePageState extends State<HomePage> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Flexible(
-              child: DashBoard(
-                path: '/goals',
-                name: 'Current Goals',
-                description: 'Check out your\nPersonal Goals!',
-              ),
+            child: DashBoard(
+              path: '/goals',
+              name: 'Current Goals',
+              description: 'Check out your\nPersonal Goals!',
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Flexible(
-              child: DashBoard(
-                path: '/calcs',
-                name: 'Calculations',
-                description: 'Calculate your stats!',
-              ),
+            child: DashBoard(
+              path: '/calcs',
+              name: 'Calculations',
+              description: 'Calculate your stats!',
             ),
           ),
         ],

@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable, prefer_const_constructors_in_immutables
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:git_fit/server-db/db_objects.dart';
@@ -7,15 +5,15 @@ import 'package:git_fit/server-db/server_conn.dart';
 import 'package:git_fit/config/colors.dart';
 
 // ignore: use_key_in_widget_constructors
-class StatsPage extends StatefulWidget {
+class LiftsPage extends StatefulWidget {
   @override
-  State<StatsPage> createState() => _StatsPageState();
+  State<LiftsPage> createState() => _StatsPageState();
 }
 
-class _StatsPageState extends State<StatsPage> {
+class _StatsPageState extends State<LiftsPage> {
   // ignore: use_key_in_widget_constructors
-  final Future<Stats>? _futureStats =
-      ToServer().getStats('mraymond2@pride.hofstra.edu');
+  final Future<Lifts>? _futureLifts =
+      ToServer().getLifts('mraymond2@pride.hofstra.edu');
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -23,15 +21,15 @@ class _StatsPageState extends State<StatsPage> {
     return Scaffold(
       //backgroundColor: const Color(0xd1000000),
       appBar: AppBar(
-        title: const Text("My Stats:"),
+        title: const Text("My Lifts:"),
       ),
       body: Center(
         child: ListView(
           children: [
             const Padding(
-              padding: EdgeInsets.fromLTRB(50, 90, 50, 20),
+              padding: EdgeInsets.fromLTRB(50, 120, 50, 20),
               child: Text(
-                "Check Out Your Up-To-Date Stats:",
+                "Check Out Your Recorded Lifts:",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     //color: Color(0xffffffff),
@@ -43,8 +41,8 @@ class _StatsPageState extends State<StatsPage> {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(8.0),
               child:
-                  (_futureStats == null) ? buildColumn() : buildFutureBuilder(),
-            ),
+                  (_futureLifts == null) ? buildColumn() : buildFutureBuilder(),
+            )
           ],
         ),
       ),
@@ -63,34 +61,29 @@ class _StatsPageState extends State<StatsPage> {
     );
   }
 
-  SizedBox buildStatsView(Stats stats) {
-    var mapStats = [
-      'Height: ',
-      'Weight: ',
-      'Body Mass Index: ',
-      'Body Fat Percentage: ',
-      'Estimated Lean Weight: ',
-      'Estimated Fat Weight: ',
+  SizedBox buildStatsView(Lifts lifts) {
+    var mapLifts = [
+      'Bench: ',
+      'Squat: ',
+      'Deadlift: ',
+      'Leg Press: ',
+      'Hang Clean: ',
+      'Push Press: ',
+      'Pull Ups: ',
     ];
 
-    var listStats = [
-      (stats.height / 12).floor().toString() +
-          '\' ' +
-          (stats.height % 12).toString() +
-          '"',
-      stats.weight.toString() + ' lbs',
-      stats.bmi.toString(),
-      stats.bfp.toString() + '%',
-      stats.lean.toString() + ' lbs',
-      stats.fat.toString() + ' lbs',
+    var listLifts = [
+      lifts.bench,
+      lifts.squat,
+      lifts.deadlift,
+      lifts.legPress,
+      lifts.hangClean,
+      lifts.pushPress,
+      lifts.pullUps,
     ];
 
-    var widgets =
-        //find why automation does not work
-
-        <Widget>[];
-    for (var i = 0; i < listStats.length; i++) {
-      //String text = mapStats[i] + listStats[i];
+    var widgets = <Widget>[];
+    for (var i = 0; i < listLifts.length; i++) {
       widgets.add(
         Padding(
           padding: const EdgeInsets.fromLTRB(46, 7, 20, 10),
@@ -98,14 +91,14 @@ class _StatsPageState extends State<StatsPage> {
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                mapStats[i],
+                mapLifts[i],
                 style: const TextStyle(
                     //color: Color(0xffffffff),
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                listStats[i],
+                listLifts[i].toString(),
                 style: const TextStyle(
                   //color: Color(0xffffffff),
                   fontSize: 16.0,
@@ -116,12 +109,6 @@ class _StatsPageState extends State<StatsPage> {
         ),
       );
     }
-    widgets.add(
-      Padding(
-        padding: const EdgeInsets.fromLTRB(40.0, 40, 40, 10),
-        child: DashBoard(name: "Click To See Your Lifts", path: '/lifts'),
-      ),
-    );
 
     return SizedBox(
       height: 534.0,
@@ -131,30 +118,30 @@ class _StatsPageState extends State<StatsPage> {
     );
   }
 
-  FutureBuilder<Stats> buildFutureBuilder() {
-    return FutureBuilder<Stats>(
-      future: _futureStats,
+  FutureBuilder<Lifts> buildFutureBuilder() {
+    return FutureBuilder<Lifts>(
+      future: _futureLifts,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return buildStatsView(snapshot.data!);
         } else if (snapshot.hasError) {
           return Column(
-            children: [
-              const Center(
-                heightFactor: 5,
+            children: const [
+              Center(
+                heightFactor: 6,
                 child: Text(
-                  'Hmm... I don\'t think you finished updating your stats\nThat\'s ok, click below',
+                  'You didn\'t finish recording your lifts yet?\nThat\'s ok, click below',
                   textAlign: TextAlign.center,
                 ),
               ),
               Center(
-                heightFactor: 2,
+                heightFactor: 3,
                 child: SizedBox(
                   width: 250,
                   height: 50,
                   child: DashBoard(
-                    name: 'Calculate your stats!',
-                    path: '/calcs',
+                    name: 'Record your lifts!',
+                    path: '/liftRec',
                   ),
                 ),
               ),
@@ -169,7 +156,7 @@ class _StatsPageState extends State<StatsPage> {
 }
 
 class DashBoard extends StatelessWidget {
-  DashBoard({Key? key, required this.name, required this.path})
+  const DashBoard({Key? key, required this.name, required this.path})
       : super(key: key);
 
   final String name;

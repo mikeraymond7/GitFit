@@ -41,9 +41,9 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: DashBoard(
-              path: '/goals',
-              name: 'Current Goals',
-              description: 'Check out your\nPersonal Goals!',
+              path: '/liftRec',
+              name: 'Set Records',
+              description: 'Record Some of Your\nPersonal Bests!',
             ),
           ),
           Padding(

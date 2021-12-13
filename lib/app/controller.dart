@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:git_fit/ui/goals/goals.dart';
+import 'package:git_fit/ui/lifts/record_lifts.dart';
 import 'package:git_fit/ui/home/home_page.dart';
 import 'package:git_fit/ui/calcs/calcs.dart';
 import 'package:git_fit/ui/stats/stats.dart';
@@ -19,7 +19,7 @@ class _NavPageState extends State<NavPage> {
 
   final List<Widget> _indexList = [
     HomePage(),
-    GoalsPage(),
+    RecLiftsPage(),
     CalcsPage(),
     StatsPage(),
   ];
@@ -42,6 +42,7 @@ class _NavPageState extends State<NavPage> {
         // ignore: prefer_const_literals_to_create_immutables
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
+            activeIcon: Icon(Icons.home, color: Palette.mainOrange),
             icon: Icon(
               Icons.home_outlined,
               color: Palette.mainOrange,
@@ -52,16 +53,19 @@ class _NavPageState extends State<NavPage> {
             ),
           ),
           const BottomNavigationBarItem(
+            activeIcon:
+                Icon(Icons.local_fire_department, color: Palette.mainOrange),
             icon: Icon(
-              Icons.lightbulb_outline,
+              Icons.whatshot,
               color: Palette.mainOrange,
             ),
             title: Text(
-              'Goals',
+              'Set Records',
               style: TextStyle(color: Palette.mainOrange),
             ),
           ),
           const BottomNavigationBarItem(
+            activeIcon: Icon(Icons.calculate, color: Palette.mainOrange),
             icon: Icon(
               Icons.calculate_outlined,
               color: Palette.mainOrange,
@@ -72,6 +76,7 @@ class _NavPageState extends State<NavPage> {
             ),
           ),
           const BottomNavigationBarItem(
+            activeIcon: Icon(Icons.insert_chart, color: Palette.mainOrange),
             icon: Icon(
               Icons.insert_chart_outlined,
               color: Palette.mainOrange,

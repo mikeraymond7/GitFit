@@ -68,4 +68,63 @@ class ToServer {
       throw Exception('Failed to fetch Stats.');
     }
   }
+
+  Future<http.Response> updateLifts(Map<String, dynamic> lifts) async {
+    //var json = lifts.toJson();
+    lifts['uname'] = 'mraymond2@pride.hofstra.edu';
+    print(lifts);
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:5000/updateLifts'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        lifts,
+      ),
+    );
+
+    if (response.statusCode == 201) {
+      return response;
+    } else {
+      throw Exception('Failed to Update User\'s lifts.');
+    }
+  }
+
+  // Future<http.Response> setLifts(lifts) async {
+  //   //var json = lifts.toJson();
+  //   lifts['uname'] = 'mraymond2@pride.hofstra.edu';
+  //   print(lifts);
+  //   final response = await http.post(
+  //     Uri.parse('http://10.0.2.2:5000/setLifts'),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     },
+  //     body: jsonEncode(
+  //       lifts,
+  //     ),
+  //   );
+
+  //   if (response.statusCode == 201) {
+  //     return response;
+  //   } else {
+  //     throw Exception('Failed to Update User\'s lifts.');
+  //   }
+  // }
+
+  Future<Lifts> getLifts(String uname) async {
+    final response = await http.get(
+      Uri.parse('http://10.0.2.2:5000/getLifts?uname=' + uname),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 201) {
+      return Lifts.fromJson(jsonDecode(response.body));
+    } else if (response.statusCode == 200) {
+      throw Exception('This Stats table does not exist.');
+    } else {
+      throw Exception('Failed to fetch Stats.');
+    }
+  }
 }

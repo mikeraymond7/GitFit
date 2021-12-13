@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:git_fit/ui/lifts/record_lifts.dart';
 import 'package:git_fit/ui/home/home_page.dart';
 import 'package:git_fit/ui/calcs/calcs.dart';
-import 'package:git_fit/ui/goals/goals.dart';
+import 'package:git_fit/ui/lifts/lifts.dart';
 import 'package:git_fit/ui/stats/stats.dart';
 import 'package:git_fit/app/controller.dart';
 import 'package:flutter/widgets.dart';
@@ -24,8 +25,9 @@ class _GitPageState extends State<GitPage> {
       routes: {
         '/home': (context) => HomePage(),
         '/calcs': (context) => CalcsPage(),
-        '/goals': (context) => GoalsPage(),
         '/stats': (context) => StatsPage(),
+        '/lifts': (context) => LiftsPage(),
+        '/liftRec': (context) => RecLiftsPage(),
       },
       theme: ThemeData(
         //backgroundColor: const Color(0xffb0bec5),

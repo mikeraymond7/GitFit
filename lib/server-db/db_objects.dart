@@ -5,11 +5,12 @@ class Users {
   final String dob;
   final String sex;
 
-  Users(
-      {required this.uname,
-      required this.name,
-      required this.dob,
-      required this.sex});
+  Users({
+    required this.uname,
+    required this.name,
+    required this.dob,
+    required this.sex,
+  });
 
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(
@@ -32,16 +33,17 @@ class Stats {
   final int height;
   final int weight;
 
-  Stats(
-      {required this.uname,
-      required this.sex,
-      required this.age,
-      required this.bmi,
-      required this.bfp,
-      required this.fat,
-      required this.lean,
-      required this.height,
-      required this.weight});
+  Stats({
+    required this.uname,
+    required this.sex,
+    required this.age,
+    required this.bmi,
+    required this.bfp,
+    required this.fat,
+    required this.lean,
+    required this.height,
+    required this.weight,
+  });
 
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
@@ -64,11 +66,12 @@ class Bmi {
   final int height;
   final int weight;
 
-  Bmi(
-      {required this.uname,
-      required this.bmi,
-      required this.height,
-      required this.weight});
+  Bmi({
+    required this.uname,
+    required this.bmi,
+    required this.height,
+    required this.weight,
+  });
 
   toJson() {
     return {
@@ -90,15 +93,16 @@ class Bfp {
   final int lean;
   final int fat;
 
-  Bfp(
-      {required this.uname,
-      required this.bfp,
-      required this.sex,
-      required this.weight,
-      required this.height,
-      required this.age,
-      required this.lean,
-      required this.fat});
+  Bfp({
+    required this.uname,
+    required this.bfp,
+    required this.sex,
+    required this.weight,
+    required this.height,
+    required this.age,
+    required this.lean,
+    required this.fat,
+  });
 
   toJson() {
     return {
@@ -111,5 +115,53 @@ class Bfp {
       'lean': lean,
       'fat': fat
     };
+  }
+}
+
+class Lifts {
+  final String uname;
+  final int bench;
+  final int squat;
+  final int deadlift;
+  final int legPress;
+  final int hangClean;
+  final int pushPress;
+  final int pullUps;
+
+  Lifts({
+    required this.uname,
+    required this.bench,
+    required this.squat,
+    required this.deadlift,
+    required this.legPress,
+    required this.hangClean,
+    required this.pushPress,
+    required this.pullUps,
+  });
+
+  toJson() {
+    return {
+      'uname': uname,
+      'bench': bench,
+      'squat': squat,
+      'deadlift': deadlift,
+      'legPress': legPress,
+      'hangClean': hangClean,
+      'pushPress': pushPress,
+      'pullUps': pullUps,
+    };
+  }
+
+  factory Lifts.fromJson(Map<String, dynamic> json) {
+    return Lifts(
+      uname: json['uname'],
+      bench: json['bench'],
+      squat: json['squat'],
+      deadlift: json['deadlift'],
+      legPress: json['legPress'],
+      hangClean: json['hangClean'],
+      pushPress: json['pushPress'],
+      pullUps: json['pullUps'],
+    );
   }
 }

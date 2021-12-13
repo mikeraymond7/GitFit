@@ -85,30 +85,30 @@ class ToServer {
     if (response.statusCode == 201) {
       return response;
     } else {
-      throw Exception('Failed to Update User\'s lifts.');
+      return setLifts(lifts);
     }
   }
 
-  // Future<http.Response> setLifts(lifts) async {
-  //   //var json = lifts.toJson();
-  //   lifts['uname'] = 'mraymond2@pride.hofstra.edu';
-  //   print(lifts);
-  //   final response = await http.post(
-  //     Uri.parse('http://10.0.2.2:5000/setLifts'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(
-  //       lifts,
-  //     ),
-  //   );
+  Future<http.Response> setLifts(lifts) async {
+    //var json = lifts.toJson();
+    lifts['uname'] = 'mraymond2@pride.hofstra.edu';
+    print(lifts);
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:5000/setLifts'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        lifts,
+      ),
+    );
 
-  //   if (response.statusCode == 201) {
-  //     return response;
-  //   } else {
-  //     throw Exception('Failed to Update User\'s lifts.');
-  //   }
-  // }
+    if (response.statusCode == 201) {
+      return response;
+    } else {
+      throw Exception('Failed to Update User\'s lifts.');
+    }
+  }
 
   Future getLifts(String uname) async {
     var listFields = [
@@ -131,7 +131,6 @@ class ToServer {
 
     if (response.statusCode == 201) {
       json = jsonDecode(response.body);
-      print(json);
     } else if (response.statusCode == 200) {
       throw Exception('This Stats table does not exist.');
     } else {

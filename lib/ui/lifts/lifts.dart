@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:git_fit/server-db/db_objects.dart';
@@ -12,7 +14,7 @@ class LiftsPage extends StatefulWidget {
 
 class _StatsPageState extends State<LiftsPage> {
   // ignore: use_key_in_widget_constructors
-  final Future<Lifts>? _futureLifts =
+  final Future? _futureLifts =
       ToServer().getLifts('mraymond2@pride.hofstra.edu');
   final TextEditingController _controller = TextEditingController();
 
@@ -61,7 +63,16 @@ class _StatsPageState extends State<LiftsPage> {
     );
   }
 
-  SizedBox buildStatsView(Lifts lifts) {
+  SizedBox buildStatsView(lifts) {
+    var liftKeys = [
+      'Bench',
+      'Squat',
+      'Deadlift',
+      'LegPress',
+      'HangClean',
+      'PushPress',
+      'PullUps',
+    ];
     var mapLifts = [
       'Bench: ',
       'Squat: ',
@@ -72,42 +83,35 @@ class _StatsPageState extends State<LiftsPage> {
       'Pull Ups: ',
     ];
 
-    var listLifts = [
-      lifts.bench,
-      lifts.squat,
-      lifts.deadlift,
-      lifts.legPress,
-      lifts.hangClean,
-      lifts.pushPress,
-      lifts.pullUps,
-    ];
-
     var widgets = <Widget>[];
-    for (var i = 0; i < listLifts.length; i++) {
-      widgets.add(
-        Padding(
-          padding: const EdgeInsets.fromLTRB(46, 7, 20, 10),
-          child: Row(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                mapLifts[i],
-                style: const TextStyle(
-                    //color: Color(0xffffffff),
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                listLifts[i].toString(),
-                style: const TextStyle(
-                  //color: Color(0xffffffff),
-                  fontSize: 16.0,
+    for (var i = 0; i < liftKeys.length; i++) {
+      var text = lifts[liftKeys[i]];
+      if (text != null) {
+        widgets.add(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(46, 7, 20, 10),
+            child: Row(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  mapLifts[i],
+                  style: const TextStyle(
+                      //color: Color(0xffffffff),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
                 ),
-              ),
-            ],
+                Text(
+                  text.toString() + ' lbs',
+                  style: const TextStyle(
+                    //color: Color(0xffffffff),
+                    fontSize: 16.0,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
 
     return SizedBox(
@@ -118,11 +122,12 @@ class _StatsPageState extends State<LiftsPage> {
     );
   }
 
-  FutureBuilder<Lifts> buildFutureBuilder() {
-    return FutureBuilder<Lifts>(
+  FutureBuilder buildFutureBuilder() {
+    return FutureBuilder(
       future: _futureLifts,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          print("Here");
           return buildStatsView(snapshot.data!);
         } else if (snapshot.hasError) {
           return Column(

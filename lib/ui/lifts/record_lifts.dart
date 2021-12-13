@@ -38,17 +38,29 @@ class IoLifts extends StatelessWidget {
     var json = {};
     var key = 'Bench';
     var val;
+    var listValues = [
+      'Bench',
+      'Squat',
+      'Deadlift',
+      'LegPress',
+      'HangClean',
+      'PushPress',
+    ];
+
     var listFields = [
       'Bench',
       'Squat',
       'Deadlift',
+      'Leg Press',
+      'Hang Clean',
+      'Push Press',
     ];
 
     var listDropDown = <DropdownMenuItem<Object>>[];
-    for (var element in listFields) {
+    for (var i = 0; i < listFields.length; i++) {
       listDropDown.add(DropdownMenuItem(
-        child: Text(element),
-        value: element,
+        child: Text(listFields[i]),
+        value: listValues[i],
       ));
     }
 
@@ -77,7 +89,7 @@ class IoLifts extends StatelessWidget {
                       items: listDropDown,
                       hint: const Text('Click To Select'),
                       onChanged: (value) {
-                        for (var field in listFields) {
+                        for (var field in listValues) {
                           if (field == value) {
                             key = value.toString();
                           }

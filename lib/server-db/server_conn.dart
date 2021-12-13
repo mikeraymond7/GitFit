@@ -72,7 +72,6 @@ class ToServer {
   Future<http.Response> updateLifts(Map<String, dynamic> lifts) async {
     //var json = lifts.toJson();
     lifts['uname'] = 'mraymond2@pride.hofstra.edu';
-    print(lifts);
     final response = await http.post(
       Uri.parse('http://10.0.2.2:5000/updateLifts'),
       headers: <String, String>{
@@ -111,7 +110,18 @@ class ToServer {
   //   }
   // }
 
-  Future<Lifts> getLifts(String uname) async {
+  Future getLifts(String uname) async {
+    var listFields = [
+      'Bench',
+      'Squat',
+      'Deadlift',
+      'LegPress',
+      'HangClean',
+      'PushPress',
+      'PullUps',
+    ];
+    var json = {};
+
     final response = await http.get(
       Uri.parse('http://10.0.2.2:5000/getLifts?uname=' + uname),
       headers: <String, String>{
@@ -120,11 +130,13 @@ class ToServer {
     );
 
     if (response.statusCode == 201) {
-      return Lifts.fromJson(jsonDecode(response.body));
+      json = jsonDecode(response.body);
+      print(json);
     } else if (response.statusCode == 200) {
       throw Exception('This Stats table does not exist.');
     } else {
       throw Exception('Failed to fetch Stats.');
     }
+    return json;
   }
 }

@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:git_fit/server-db/db_objects.dart';
+//import 'package:git_fit/server-db/db_objects.dart';
 import 'package:git_fit/server-db/server_conn.dart';
 import 'package:git_fit/config/colors.dart';
 
@@ -127,7 +125,6 @@ class _StatsPageState extends State<LiftsPage> {
       future: _futureLifts,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          print("Here");
           return buildStatsView(snapshot.data!);
         } else if (snapshot.hasError) {
           return Column(
